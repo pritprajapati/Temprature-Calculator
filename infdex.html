@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temprature Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="title">Temprature Calculator</h1>
+    <div class="container">
+        <div class="panel">
+            <h1 class="bgunits">&degC</h1>
+            <h2>Celsius</h2>
+            <input type="number" id="celsius" value="0"/>
+        </div>
+        <div class="panel">
+            <h1 class="bgunits">&degF</h1>
+            <h2>Farenheite</h2>
+            <input type="number" id="fahrenheit" value="32"/>
+        </div>
+        <div class="panel">
+            <h1 class="bgunits">&degK</h1>
+            <h2>Kelvin</h2>
+            <input type="number" id="kelvin" value="273.15"/>
+        </div>
+    </div>
+</body>
+<script>
+const inputs = document.querySelectorAll(".panel input");
+const c = document.querySelector("#celsius");
+const f = document.querySelector("#fahrenheit");
+const k = document.querySelector("#kelvin");
+
+inputs.forEach(input => {
+    input.addEventListener("input", e => {
+        const unit = e.target.id;
+        const v = parseInt(e.target.value);
+        if(unit === "celsius") {
+            f.value = parseInt((v*18) + 32).toFixed(4) * 1;
+            k.value = parseFloat(v + 273.15).toFixed(4) * 1;
+        }
+        else if(unit === "fahrenheit") {
+            c.value = parseInt((v - 32) * 5/9).toFixed(4)*1;
+            k.value = parseFloat(((v  - 32) * 5/9)+ 273.15).toFixed(4) * 1;
+        }
+        else if (unit === "kelvin") {
+            f.value = parseInt((v - 273.15) * 9 / 5 + 32).toFixed(4) * 1;
+            c.value = parseFloat(v - 273.15).toFixed(4)*1;
+        }
+    });
+});
+</script>
+</html>
